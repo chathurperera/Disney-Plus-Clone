@@ -1,14 +1,31 @@
-import React from "react";
+import React , {useEffect, useState} from "react";
 import styled from "styled-components";
+import {useParams} from "react-router-dom";
+import db from "../firebase";
+
 const Detail = () => {
+    const {id} = useParams();
+    const [movie, setMovie] = useState('');
+    useEffect(() => {
+        db.collection("movies")
+        .doc(id)
+        .get()
+        .then((doc) => {
+            if(doc.exists){
+                setMovie(doc.data());
+            }else{
+
+            }
+        })        
+    },[id])
+console.log(movie);
     return (
-        <div>
             <Container>
                 <Background>
-                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" />
+                    <img src={movie.backgroundImg} />
                 </Background>
                 <ImageTitle>
-                    <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" alt='movie logo' />
+                    <img src={movie.titleImg} alt='movie logo' />
                 </ImageTitle>
                 <Controls>
                     <PlayButton>
@@ -27,15 +44,12 @@ const Detail = () => {
                     </GroupButton>
                 </Controls>
                 <Subtitle>
-                    2018 + 7m + Family , Fatansy , Kids , Animation
+                    {movie.subTitle}
                 </Subtitle>
                 <Description>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-                    ultrices sit amet turpis quis imperdiet. Donec consectetur.
-                    Praesent porttitor massa quis feugiat accumsan. Aenean consequat magna nisi, sed lacinia .
+                   {movie.description}
                 </Description>
             </Container>
-        </div>
     );
 };
 
@@ -43,7 +57,7 @@ export default Detail;
 
 const Container = styled.div`
   min-height: calc(100vh - 70px);
-  padding: 4rem calc(3.5vw + 10px);
+  padding: 3rem calc(3.5vw + 10px);
   position: relative;
 `;
 const Background = styled.div`
@@ -132,10 +146,10 @@ const Subtitle = styled.div`
 
 const Description = styled.p`
     line-height:1.2;
-    font-size:20px;
+    font-size:19px;
     margin-top:16px;
     color:rgb(249,249,249);
-    width:500px;
+    width:800px;
     max-width:600px;
 
 `

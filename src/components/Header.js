@@ -1,38 +1,53 @@
 import React from 'react'
 import styled from 'styled-components'
+import { selectUserName , selectUserPhoto } from '../features/user/userSlice'
+import {useSelector} from "react-redux";
 
 const Header = () => {
+    const userName = useSelector(selectUserName);
+    const userPhoto = useSelector(selectUserPhoto);
+    
     return (
         <Nav>
             <Logo src='/images/logo.svg' />
-            <NavMenu>
-                <a>
-                    <img src="/images/home-icon.svg" alt='' />
-                    <span>HOME</span>
-                </a>
-                <a>
-                    <img src="/images/search-icon.svg" alt='' />
-                    <span>SEARCH</span>
-                </a>
-                <a>
-                    <img src="/images/watchlist-icon.svg" alt='' />
-                    <span>WATCHLIST</span>
-                </a>
-                <a>
-                    <img src="/images/original-icon.svg" alt='' />
-                    <span>ORIGINALS</span>
-                </a>
-                <a>
-                    <img src="/images/movie-icon.svg" alt='' />
-                    <span>MOVIE</span>
-                </a>
-                <a>
-                    <img src="/images/series-icon.svg" alt='' />
-                    <span>SERIES</span>
-                </a>
+            {
+                !userName ? (
+                <LoginContainer>
+                    <Login>Login</Login>
+                </LoginContainer>
+                ) : 
+                <>                
+                <NavMenu>
+                    <a>
+                        <img src="/images/home-icon.svg" alt='' />
+                        <span>HOME</span>
+                    </a>
+                    <a>
+                        <img src="/images/search-icon.svg" alt='' />
+                        <span>SEARCH</span>
+                    </a>
+                    <a>
+                        <img src="/images/watchlist-icon.svg" alt='' />
+                        <span>WATCHLIST</span>
+                    </a>
+                    <a>
+                        <img src="/images/original-icon.svg" alt='' />
+                        <span>ORIGINALS</span>
+                    </a>
+                    <a>
+                        <img src="/images/movie-icon.svg" alt='' />
+                        <span>MOVIE</span>
+                    </a>
+                    <a>
+                        <img src="/images/series-icon.svg" alt='' />
+                        <span>SERIES</span>
+                    </a>
+    
+                </NavMenu>
+                <UserImg src='/images/profile.jpg' />
+                </> 
 
-            </NavMenu>
-            <UserImg src='/images/profile.jpg' />
+            }
         </Nav>
     )
 }
@@ -102,4 +117,28 @@ const UserImg = styled.img`
     border-radius:50%;
     cursor: pointer;
 
+`
+
+const Login = styled.button`
+    background: transparent;
+    color: #f9f9f9;
+    border: 1px solid #f9f9f9;
+    padding:8px 16px;
+    border-radius:4px;
+    letter-spacing: 1.5px;
+    text-transform:uppercase;
+    transition: all 0.s ease 0s;
+    cursor: pointer;
+
+    &:hover{
+        background: #f9f9f9;
+        color:rgba(0,0,0,0.8);
+        border:transparent;
+    }
+`
+
+const LoginContainer = styled.div`
+    display: flex;
+    flex:1;
+    justify-content: flex-end;
 `
