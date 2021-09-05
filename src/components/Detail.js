@@ -30,9 +30,9 @@ const Detail = () => {
                     2018 + 7m + Family , Fatansy , Kids , Animation
                 </Subtitle>
                 <Description>
-                    lorem dannfeuhaniueofahkdnzso ooniwnqknoishbcisakcxnosa dnqwiuhakSXKASNLA  
-                    ONIONL;HUOH;ONxiuno;ou;hoNDMMLCOKnhtojlndkhvhwenmn.daahgeBNMVBLIFOhkbf,vnahdsmnvkjscjAn
-                    vkHjfeLFIidgC;argefn,nsvkPhhavefm;bck;hfwjbmfnlJ
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+                    ultrices sit amet turpis quis imperdiet. Donec consectetur.
+                    Praesent porttitor massa quis feugiat accumsan. Aenean consequat magna nisi, sed lacinia .
                 </Description>
             </Container>
         </div>
@@ -43,7 +43,7 @@ export default Detail;
 
 const Container = styled.div`
   min-height: calc(100vh - 70px);
-  padding: 5rem calc(3.5vw + 10px);
+  padding: 4rem calc(3.5vw + 10px);
   position: relative;
 `;
 const Background = styled.div`
@@ -63,7 +63,7 @@ const Background = styled.div`
 `;
 const ImageTitle = styled.div`
   height: 30vh;
-  min-height: 170px;
+  min-height: 150px;
   width: 34vw;
   min-width: 200px;
 
@@ -124,17 +124,18 @@ const GroupButton = styled(AddButton)`
 `
 
 const Subtitle = styled.div`
-color:rgb(249,249,249);
-font-size:15px;
-min-height:20px;
-margin-top:26px;
-
+    color:rgb(249,249,249);
+    font-size:15px;
+    min-height:20px;
+    margin-top:26px;
 `
 
-const Description = styled.div`
-line-height:1.4;
-font-size:20px;
-margin-top:16px;
-color:rgb(249,249,249);
+const Description = styled.p`
+    line-height:1.2;
+    font-size:20px;
+    margin-top:16px;
+    color:rgb(249,249,249);
+    width:500px;
+    max-width:600px;
 
 `
